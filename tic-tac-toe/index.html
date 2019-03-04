@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ix Igool Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section id="content">
+        <header style="text-align:center; background-color: rgba(255,255,127,50%);">
+            <h1>Tic-Tac-Toe
+                <span class="by">by</span>
+                iAaDcSwR</h1>
+        </header>
+        <!-- <section class="game-ctr"> -->
+        <div class="ixigool">
+            <div class="ul-ctr">
+                <ul class="game-tile-ctr" id="kVUqnvP">
+                </ul>
+            </div>
+            <div class="nextTurnBtnCtr">
+                <button id="nextTurnBtn" disabled class="hidden" onclick="nextTurn()">End Move</button>
+            </div>
+            <div class="console">
+                <h3>Console</h3>
+                <div id="ceojmds">
+                    <p class="result hidden"></p>
+                    <p class="error hidden"></p>
+                </div>
+            </div>
+            <div class="console">
+                <h3>Log<input id="baierhma" type="checkbox" checked style="position: absolute; top:0.5em; right: 0.5em;"></h3>
+                <div>
+                    <details open>
+                        <summary>Moves (click to toggle)</summary>
+                        <ul id="sdfgsdj"></ul>
+                    </details>
+                </div>
+            </div>
+            <form name="addtiles" class="addtilesform">
+                <label for="sizefield">Enter desired number of tiles per row/column:</label>
+                <input name="sizefield" type="number" required min="3" max="7" step="1" value="3">
+                <button name="sizebtn" type="button">Submit</button>
+            </form>
+
+        </div>
+        <!-- </section> -->
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

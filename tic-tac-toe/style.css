@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-image: url(meadow.jpg);
+}
+
+#content {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+
+#content header {
+    padding: 0.5em;
+    /* background: transparent linear-gradient(to right, transparent, rgba(0, 0, 0, 50%), transparent); */
+}
+
+#content header {
+    color: white;
+    text-shadow: 0 0 16px black, 0 0 8px black, 0 0 4px black, 0 0 2px black;
+    box-shadow: inset 0 -8px 32px black, inset 0 8px 32px white, 0 8px 32px black;
+    width: fit-content;
+    margin: 1em auto;
+    padding: 1em;
+    border-radius: 16px;
+    /* text-shadow: 3px 3px black; */
+}
+
+#content header * {
+    display: inline;
+}
+
+#content header h1 {
+    font-size: 2em;
+}
+
+#content header .by {
+    font-size: 0.5em;
+}
+
+/*.game-ctr {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 1em;
+}*/
+
+.ixigool {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    --tile-size: 64px;
+    /*--row-size: 3;*/
+}
+
+.ixigool > * {
+    box-shadow: 0 4px 16px rgba(0,0,0,50%);
+}
+
+.ixigool .ul-ctr {
+    display: inline-block;
+    border: 2px solid black;
+    margin: 1em auto;
+    text-align: center;
+    background-color: white;
+    width: calc(3 * var(--tile-size));
+    height: calc(3 * var(--tile-size));
+}
+
+.ixigool .game-tile-ctr {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    list-style-type: none;
+    /* margin: 1em; */
+}
+
+.ixigool .game-tile {
+    display: inline-block;
+    width: var(--tile-size);
+    height: var(--tile-size);
+    line-height: var(--tile-size);
+    box-sizing: border-box;
+    border: 1px solid blue;
+    background-color: white;
+    background-image: url(sprite.png);
+    background-repeat: no-repeat;
+    user-select: none;
+    color: transparent;
+    transition: background-position-y 350ms;
+}
+
+.nextTurnBtnCtr {
+    /* height: 2em; */
+    margin: 0.5em auto;
+}
+
+.nextTurnBtnCtr, #nextTurnBtn {
+    border-radius: 0.5em;
+}
+
+/*#nextTurnBtn*/
+
+button,
+input {
+    padding: 0.25em;
+    /* box-shadow: 2px 2px black; */
+}
+
+#nextTurnBtn {
+    padding: 0.5em;
+    
+}
+#nextTurnBtn:enabled {
+    background-image: linear-gradient(to top, #cef, white);
+    border-color: #cef;
+}
+#nextTurnBtn:disabled {
+    text-shadow: 1px 1px 0px white;
+    border-color: #fff;
+}
+
+button {
+    outline: none;
+}
+
+/* #nextTurnBtn.hidden {
+    display: none;
+    
+}
+
+#nextTurnBtn.shown {
+    display: inline;
+} */
+
+.game-tile.empty {
+    background-position-y: -64px;
+}
+
+.game-tile.notempty {
+    background-position-y: 0px;
+}
+
+.game-tile.x {
+    background-position-x: -1px;
+}
+
+.game-tile.o {
+    background-position-x: -63px;
+}
+.game-tile.notempty:not(.notplayable) {
+    border-color: yellow;
+}
+
+.console {
+    border: 1px solid black;
+    background-color: white;
+    margin: 1em;
+    border-radius: 0.5em;
+    transition: height 250ms;
+    /* width: calc(100vw - 2.5em); */
+}
+
+.console h3 {
+    border-radius: 0.5em 0.5em 0 0;
+    border-bottom: 1px solid black;
+    padding: 6px;
+    background-image: linear-gradient(to top, #ccc, white);
+    text-align: center;
+    position: relative;
+}
+
+.console ul,
+.console>div,
+.console>span,
+.console>section,
+.console>article,
+.console>aside {
+    list-style-type: none;
+    text-align: left;
+    padding: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+.console summary {
+    outline: none;
+}
+
+.console ul>li {
+    margin-bottom: 6px;
+}
+
+.console ul>li::before {
+    content: ' \00BB  ';
+}
+
+.console li.minor {
+    font-style: italic;
+}
+
+.console .error, .console .result {
+    font-weight: bold;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    line-height:normal;
+    transition:line-height 250ms, padding 250ms;
+}
+.console .error.hidden, .console .result.hidden {
+    line-height:0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.console .error {
+    background-image: linear-gradient(to right, transparent,rgba(255,0,0,50%),transparent);
+}
+
+.console .result {
+    background-image: linear-gradient(to right, transparent,rgba(0,255,0,50%),transparent);
+}
+
+form.addtilesform {
+    margin: 0 auto;
+    border-radius: 0.5em;
+    background-color: white;
+    padding: 0.5em;
+    border: 1px solid black;
+}
