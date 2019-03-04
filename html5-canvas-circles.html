@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas Exercise</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial;
+        }
+
+        main {
+            margin: 1em;
+        }
+
+        .row-flex-ctr {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+        }
+
+        .row-flex-ctr>label {
+            margin-right: 0.5em;
+        }
+
+        button {
+            padding: 0.5em;
+        }
+
+        button:not(.clr-canvas-btn) {
+            width: 100%;
+        }
+
+        .clr-canvas-btn-ctr {
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .canvas-ctr {
+            background-color: #ccc;
+            border: 1px solid black;
+            padding: 0.5em;
+        }
+
+        canvas {
+            background-color: white;
+            width: 640px;
+            height: 480px;
+            vertical-align: middle;
+        }
+
+        div:not(:last-child),
+        section:not(:last-child) {
+            margin-bottom: 1em;
+        }
+
+        .small-heading {
+            font-size: 1em;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        input {
+            width: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <article class="sphere">
+            <section class="row-flex-ctr">
+                <div>
+                    <form name="sphere">
+                        <section class="row-flex-ctr">
+                            <label for="radius">Sphere Radius</label>
+                            <input name="radius" type="text">&nbsp;px
+                        </section>
+                        <section class="row-flex-ctr">
+                            <label for="volume">Sphere Volume</label>
+                            <input name="volume" type="text" disabled>&nbsp;px&sup3;
+                        </section>
+                        <div>
+                            <button name="calcbtn" type="button">Draw & Calculate</button>
+                        </div>
+                        <div>
+                            <button name="bonusbtn" type="button">Bonus</button>
+                        </div>
+
+                    </form>
+                </div>
+                <section>
+                    <h2 class="small-heading">Drawing on Canvas</h2>
+                    <section class="canvas-ctr">
+                        <canvas width="640" height="480"></canvas>
+                    </section>
+                    <section class="clr-canvas-btn-ctr">
+                        <button type="button" class="clr-canvas-btn">Clear canvas</button>
+                    </section>
+                </section>
+            </section>
+
+        </article>
+    </main>
+    <script>
+        var myForm = document.forms.sphere,
+            myCanvas = document.querySelector('.sphere canvas'),
+            myCanvasWidth = myCanvas.clientWidth,
+            myCanvasHeight = myCanvas.clientHeight,
+            canvasMidX = myCanvasWidth / 2,
+            canvasMidY = myCanvasHeight / 2,
+            myCanvasCtx = myCanvas.getContext('2d'),
+            myCanvasClrBtn = document.querySelector('.sphere .clr-canvas-btn');
+
+        myForm.calcbtn.addEventListener('click', sphereVolCalc);
+
+        myForm.bonusbtn.addEventListener('click', bonus);
+
+        myCanvasClrBtn.addEventListener('click', clearCanvas);
+
+        function sphereVolCalc() {
+            var radius =
+                ifValid(myForm.elements.radius.value);
+            if (radius != false) {
+                myForm.elements.volume.value =
+                    Math.floor(4 * Math.PI * Math.pow(radius, 3) / 3);
+                drawCircle(radius);
+            }
+        }
+
+        function ifValid(inp) {
+            var num = 1 * inp;
+            var valid = true,
+                errorStrStart = 'Error! Input ',
+                errorStrMid = '',
+                errorStrEnd = '.';
+            if (inp == '') {
+                var errorStrMid = 'is empty';
+                valid = false;
+            } else if (isNaN(num)) {
+                var errorStrMid = 'is not numeric';
+                valid = false;
+            } else if (!(num > 0)) {
+                var errorStrMid = 'is not positive';
+                valid = false;
+            } else if (num * 2 >= myCanvasHeight) {
+                var errorStrMid = 'exceeds canvas limits';
+                valid = false;
+            } else {
+                return num;
+            }
+            alert(errorStrStart + errorStrMid + errorStrEnd);
+            return false;
+        }
+
+        function drawCircle(radius) {
+            myCanvasCtx.beginPath();
+            myCanvasCtx.arc(
+                canvasMidX,
+                canvasMidY,
+                radius,
+                0,
+                2 * Math.PI
+            );
+            myCanvasCtx.stroke();
+            myCanvasCtx.closePath();
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function bonus() {
+            let radius = 1,
+                myInterval = window.setInterval(() => {
+                    drawCircle(radius);
+                    if (radius >= 400) {
+                        window.clearInterval(myInterval);
+                        myCanvasCtx.globalCompositeOperation = 'destination-out';
+                        myCanvasCtx.lineWidth = 2;
+                        radius = 1;
+                        myInterval = window.setInterval(() => {
+                            drawCircle(radius);
+                            if (radius >= 400) {
+                                myCanvasCtx.lineWidth = 1;
+                                myCanvasCtx.globalCompositeOperation = 'source-over';
+                                myCanvasCtx.strokeStyle = '#000000';
+                                return window.clearInterval(myInterval);
+                            }
+                            radius++;
+                        }, 1);
+                    } else {
+                        radius++;
+                        myCanvasCtx.strokeStyle = getRandomColor();
+                    }
+                }, 1);
+        }
+
+        function clearCanvas() {
+            myCanvasCtx.clearRect(
+                0,
+                0,
+                myCanvasWidth,
+                myCanvasHeight
+            );
+        }
+    </script>
+</body>
+
+</html>
