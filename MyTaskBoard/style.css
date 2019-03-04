@@ -1,0 +1,136 @@
+body {
+    background-image: url('tile.jpg');
+    background-repeat: repeat;
+}
+
+header {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    height: fit-content;
+}
+
+#formCtr {
+    padding: 1rem;
+    background-color: #ccc;
+    width: fit-content;
+    border: 1px solid black;
+}
+
+#noteContentCtr {
+    overflow-y: auto;
+    height: 168px;
+    width: fit-content;
+}
+
+#noteContent {
+    background-image: url('formbg.jpg');
+    background-repeat: repeat;
+    resize: none;
+    line-height: 33px;
+    padding: 14px 78px 14px 80px;
+    width: 750px;
+    max-width: 90vw;
+    font-size: larger;
+    overflow: hidden;
+}
+
+#btnSection {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+#notesArea {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#btnSection button {
+    margin: .5rem .5rem 0 .5rem;
+}
+
+#notesArea>article,
+#formErr {
+    opacity: 1;
+    transition: opacity;
+}
+
+#notesArea>article {
+    position: relative;
+    background-image: url("notebg.png");
+    width: 200px;
+    height: 250px;
+    padding-top: 45px;
+    padding-right: 27px;
+    padding-left: 7px;
+    transition-duration: 1s;
+}
+
+#notesArea>article.hideme,
+#formErr.hideme {
+    opacity: 0;
+}
+
+#notesArea>article>span.fas {
+    opacity: 0;
+    position: absolute;
+    top: calc(20px + .5rem);
+    right: calc(23px + .5rem);
+    color: black;
+    cursor: pointer;
+    transition: opacity 250ms;
+}
+
+#notesArea>article:hover>span.fas {
+    opacity: 1;
+}
+
+#notesArea>article>span:not(.fas) {
+    padding: .5rem;
+}
+
+#notesArea>article>section.content {
+    font-family: 'Itim', 'cursive';
+    font-size: large;
+    overflow-y: auto;
+    word-break: break-word;
+    height: 155px;
+    width: 100%;
+    display: inline-block;
+}
+
+#notesArea>article>section.details {
+    font-weight: bold;
+    font-size: small;
+}
+
+#notesArea>article>section.details>p {
+    margin: 0;
+}
+
+.modal-alert {
+    background-image: linear-gradient(to top,
+        hsla(0, 0%, 0%, 25%),
+        transparent,
+        hsla(0, 0%, 100%, 50%));
+    border-color: rgba(0, 0, 0, .1);
+}
+
+.modal-alert .modal-header {
+    border-bottom-color: rgba(0, 0, 0, .1);
+}
+
+.modal-alert .modal-footer {
+    border-top-color: rgba(0, 0, 0, .1);
+}
+
+.modal-alert.success {
+    color: #155724;
+    background-color: #d4edda;
+}
+
+.modal-alert.error {
+    color: #721c24;
+    background-color: #f8d7da;
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <!-- Optional Bootstrap JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Itim">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Amster Notes</title>
+</head>
+
+<body>
+    <header>
+        <img class="d-block mx-auto" src="title.png" alt="Title">
+    </header>
+    <main>
+        <section id="formCtr" class="mx-auto">
+            <form name="task">
+                <section id="formDetails" class="form-inline">
+                    <label for="noteDate" class="mb-2 mr-sm-2">Date:</label>
+                    <input name="date" type="text" class="form-control mb-2 mr-sm-2" id="noteDate" placeholder="dd/mm/yyyy"
+                        required>
+                    <button name="dateclrbtn" type="button" class="btn btn-primary mb-2">Today</button>
+                    &nbsp;&nbsp;
+                    <label for="noteTime" class="mb-2 mr-sm-2">Time:</label>
+                    <input name="time" type="text" class="form-control mb-2 mr-sm-2" id="noteTime" placeholder="hh:mm"
+                        required>
+                    <button name="timeclrbtn" type="button" class="btn btn-primary mb-2">Now</button>
+                </section>
+                <section id="noteContentCtr">
+                    <textarea name="content" id="noteContent" rows="4" wrap="soft" required></textarea>
+                </section>
+                <section id="btnSection">
+                    <button name="addbtn" class="btn btn-success" type="submit">Add</button>
+                    <button name="clrbtn" class="btn btn-danger" type="button">Reset Form</button>
+                    <button id="alertErrorBtn" style="display: none;" type="button" data-toggle="modal" data-target="#addError"></button>
+                </section>
+            </form>
+        </section>
+        <section id="notesArea"></section>
+    </main>
+    <!-- Error Alert Modal -->
+    <div class="modal fade" id="addError">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-alert error">
+                <div class="modal-header display-relative">
+                    <h4 class="modal-title mx-auto">&nbsp;</h4>
+                    <button type="button" class="close absolute" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center center-block">
+                        <!-- Error message goes here -->
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger mx-auto" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
